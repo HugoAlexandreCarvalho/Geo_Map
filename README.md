@@ -1,5 +1,5 @@
-# Processamento Digital de Imagens Aéreas e Análise Topográfica Matricial via Python e WebODM
-# Geomap
+# GeoMap — Processamento e Segmentação de Imagens Aéreas
+
 ## Integrantes da equipe
 
 - Gustavo Barros Martins
@@ -7,55 +7,62 @@
 - Jeferson Machado dos Santos
 - Maicon de Sousa Pontes
 
+---
+
 ## Descrição do problema
 
-O projeto busca solucionar um problema enfrentado por um engenheiro autônomo relacionado ao elevado tempo necessário para realizar algumas atividades técnicas.
+O projeto busca solucionar um problema enfrentado por um engenheiro autônomo relacionado ao elevado tempo necessário para realizar atividades de análise e interpretação de terrenos.
 
-Entre os principais problemas estão o mapeamento manual de terrenos e a análise de dados de elevação, atividades que podem consumir bastante tempo e estar sujeitas a erros humanos de interpretação.
+Atualmente, parte dessas atividades pode envolver a análise manual de imagens aéreas obtidas por drones, exigindo que o profissional identifique visualmente diferentes elementos presentes no terreno, como solo, vegetação, pedras, áreas pavimentadas e construções.
 
-Embora os drones tenham facilitado a coleta de dados em campo, o grande volume de informações geradas, especialmente matrizes de elevação, pode tornar o processamento e a análise dos dados um novo gargalo.
+Esse processo pode consumir bastante tempo e estar sujeito a erros de interpretação, principalmente quando existe uma grande quantidade de imagens para analisar.
 
-Dessa forma, o projeto propõe a utilização de Python, WebODM, processamento de imagens e análise matricial para automatizar parte desse processo, buscando identificar características do terreno, como áreas planas e regiões de interesse para análise.
+Dessa forma, o projeto propõe a utilização de técnicas de Inteligência Artificial e processamento digital de imagens para automatizar parte desse processo.
 
-## Conjunto de dados utilizado
+---
 
-O projeto utilizará um conjunto de dados composto por imagens aéreas obtidas por drones e informações relacionadas ao seu georreferenciamento.
+## Solução proposta
 
-Esses dados serão utilizados para gerar e analisar informações topográficas do terreno, incluindo modelos digitais de elevação e ortomosaicos.
+O GeoMap tem como objetivo desenvolver uma solução capaz de analisar imagens aéreas obtidas por drones e realizar a **segmentação semântica** dos elementos presentes no terreno.
 
-### Base de dados
+A partir de uma imagem, o sistema deverá ser capaz de identificar diferentes regiões e classificá-las de acordo com suas características.
 
-**Nome:** ODMData
+Entre os elementos que poderão ser identificados estão:
 
-**Descrição:** conjunto de datasets disponibilizados pelo projeto OpenDroneMap para utilização em testes e processamento de imagens aéreas obtidas por drones.
+- Solo;
+- Vegetação;
+- Grama;
+- Pedras;
+- Cascalho;
+- Árvores;
+- Água;
+- Áreas pavimentadas;
+- Telhados;
+- Muros;
+- Cercas;
+- Obstáculos.
 
-## Fonte dos dados
+A proposta é utilizar um modelo de Inteligência Artificial treinado com imagens previamente classificadas para aprender a identificar esses diferentes elementos de forma automática.
 
-Os dados são disponibilizados pelo projeto **OpenDroneMap**, uma plataforma de código aberto voltada ao processamento de imagens obtidas por drones e à geração de produtos fotogramétricos.
+---
 
-## Link para a fonte original
+## MVP
 
-- OpenDroneMap – Datasets:
-  https://opendronemap.org/odm/datasets/
+O MVP inicial do projeto será concentrado na **segmentação semântica de imagens aéreas**.
 
-- Repositório oficial do ODMData:
-  https://github.com/OpenDroneMap/ODMdata
+O sistema deverá receber uma imagem obtida por drone e produzir uma representação segmentada, na qual diferentes regiões da imagem serão classificadas de acordo com os elementos identificados.
 
-## Instruções para obtenção dos dados
-
-Os dados podem ser obtidos diretamente na página oficial do OpenDroneMap:
-
-https://opendronemap.org/odm/datasets/
-
-O conjunto de dados selecionado deverá ser baixado e armazenado na pasta `dataset/` do projeto.
-
-A estrutura poderá ser organizada da seguinte forma:
+### Fluxo previsto
 
 ```text
-├── README.md
-├── docs/
-│   └── TED01.pdf
-├── data/
-│   └── dataset/
-└── src/
-    └── main.py
+Imagem aérea
+     ↓
+Pré-processamento
+     ↓
+Modelo de Inteligência Artificial
+     ↓
+Segmentação semântica
+     ↓
+Classificação dos elementos
+     ↓
+Imagem segmentada
