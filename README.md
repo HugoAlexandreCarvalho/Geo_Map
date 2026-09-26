@@ -39,19 +39,13 @@ Dataset disponibilizado no Kaggle:
 
 https://www.kaggle.com/datasets/awsaf49/semantic-drone-dataset
 
-## Instruções para obtenção dos dados
+## Dados tratados
 
-O dataset não será armazenado neste repositório devido ao seu tamanho e às condições de uso e distribuição estabelecidas pelos responsáveis.
+Durante a etapa de preparação dos dados, foram processadas **400 imagens** do conjunto de treinamento.
 
-O download deverá ser realizado diretamente através das fontes disponibilizadas acima, quando a etapa de desenvolvimento e testes do modelo for iniciada.
+As imagens originais apresentavam resolução de **6000 × 4000 pixels** e foram redimensionadas para **1280 × 853 pixels**, mantendo aproximadamente a mesma proporção das imagens originais.
 
-O conjunto de dados possui aproximadamente 4 GB na versão disponibilizada no Kaggle.
-
-Após o download, os dados poderão passar por etapas de preparação e pré-processamento, incluindo a redução da resolução das imagens, caso seja necessário para adequar o volume de dados à capacidade computacional disponível e ao treinamento do modelo.
-
-O dataset original deverá ser preservado, sendo utilizadas versões processadas para as etapas de desenvolvimento e treinamento quando necessário.
-
-As informações complementares sobre o dataset também estão disponíveis em:
+O tratamento foi realizado utilizando **Python** e a biblioteca **Pillow**, por meio do script:
 
 ```text
-data/README.md
+src/preprocessing.py
