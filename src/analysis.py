@@ -1,6 +1,6 @@
 from PIL import Image
 from pathlib import Path
-from collections import Counter
+import numpy as np
 
 PASTA = Path(
     r"D:\faculdade\archive\semantic_drone_dataset\training_set\images\processed"
@@ -16,64 +16,87 @@ imagens = [
 ]
 
 print("=" * 60)
-print("ANÁLISE DA BASE PROCESSADA - GEOMAP")
+print("ESTATÍSTICAS DESCRITIVAS - GEOMAP")
 print("=" * 60)
 
-print(f"Imagens encontradas: {len(imagens)}")
+print(f"Imagens analisadas: {len(imagens)}")
+print("Resolução: 1280 x 853")
+print()
 
-if not imagens:
-    print("Nenhuma imagem encontrada.")
-    exit()
+# Acumuladores
+soma_rgb = np.zeros(3, dtype=np.float64)
+soma_quadrados_rgb = np.zeros(3, dtype=np.float64)
 
-formatos = Counter(
-    arquivo.suffix.lower()
-    for arquivo in imagens
-)
+min_rgb = np.full(3, 255, dtype=np.uint8)
+max_rgb = np.zeros(3, dtype=np.uint8)
 
-print("\nFormatos encontrados:")
-for formato, quantidade in formatos.items():
-    print(f"  {formato}: {quantidade}")
+total_pixels = 0
 
-tamanhos = []
-resolucoes = []
-
-for arquivo in imagens:
-    tamanho = arquivo.stat().st_size
-    tamanhos.append(tamanho)
+for numero, arquivo in enumerate(imagens, start=1):
 
     with Image.open(arquivo) as imagem:
-        resolucoes.append(imagem.size)
+        imagem = imagem.convert("RGB")
+        pixels = np.asarray(imagem, dtype=np.uint8)
 
-print("\nResoluções encontradas:")
-resolucoes_unicas = Counter(resolucoes)
+    pixels = pixels.reshape(-1, 3)
 
-for resolucao, quantidade in resolucoes_unicas.items():
-    print(
-        f"  {resolucao[0]} x {resolucao[1]}: "
-        f"{quantidade} imagens"
-    )
+    total_pixels += len(pixels)
 
-tamanho_total = sum(tamanhos)
-tamanho_medio = tamanho_total / len(tamanhos)
-tamanho_minimo = min(tamanhos)
-tamanho_maximo = max(tamanhos)
+    soma_rgb += pixels.sum(axis=0)
+    soma_quadrados_rgb += (pixels.astype(np.float64) ** 2).sum(axis=0)
 
-def converter_mb(valor):
-    return valor / (1024 * 1024)
+    min_rgb = np.minimum(min_rgb, pixels.min(axis=0))
+    max_rgb = np.maximum(max_rgb, pixels.max(axis=0))
 
-print("\nTamanho dos arquivos:")
-print(f"  Total:   {converter_mb(tamanho_total):.2f} MB")
-print(f"  Médio:   {converter_mb(tamanho_medio):.2f} MB")
-print(f"  Mínimo:  {converter_mb(tamanho_minimo):.2f} MB")
-print(f"  Máximo:  {converter_mb(tamanho_maximo):.2f} MB")
+    if numero % 50 == 0:
+        print(f"Imagens processadas: {numero}/{len(imagens)}")
 
-print("\nVerificação da resolução:")
+# Média
+media_rgb = soma_rgb / total_pixels
 
-if len(resolucoes_unicas) == 1:
-    print("  Todas as imagens possuem a mesma resolução.")
-else:
-    print("  Existem imagens com resoluções diferentes.")
+# Variância e desvio padrão
+variancia_rgb = (
+    soma_quadrados_rgb / total_pixels
+) - (media_rgb ** 2)
+
+desvio_rgb = np.sqrt(variancia_rgb)
+
+# Luminosidade aproximada
+luminosidade_media = (
+    0.299 * media_rgb[0]
+    + 0.587 * media_rgb[1]
+    + 0.114 * media_rgb[2]
+)
+
+print()
+print("=" * 60)
+print("RESULTADOS")
+print("=" * 60)
+
+print(f"Total de pixels analisados: {total_pixels:,}")
+
+print("\nMÉDIA DOS PIXELS")
+print(f"  Vermelho (R): {media_rgb[0]:.2f}")
+print(f"  Verde   (G): {media_rgb[1]:.2f}")
+print(f"  Azul    (B): {media_rgb[2]:.2f}")
+
+print("\nDESVIO PADRÃO")
+print(f"  Vermelho (R): {desvio_rgb[0]:.2f}")
+print(f"  Verde   (G): {desvio_rgb[1]:.2f}")
+print(f"  Azul    (B): {desvio_rgb[2]:.2f}")
+
+print("\nVALORES MÍNIMOS")
+print(f"  Vermelho (R): {min_rgb[0]}")
+print(f"  Verde   (G): {min_rgb[1]}")
+print(f"  Azul    (B): {min_rgb[2]}")
+
+print("\nVALORES MÁXIMOS")
+print(f"  Vermelho (R): {max_rgb[0]}")
+print(f"  Verde   (G): {max_rgb[1]}")
+print(f"  Azul    (B): {max_rgb[2]}")
+
+print(f"\nLuminosidade média aproximada: {luminosidade_media:.2f}")
 
 print("=" * 60)
-print("ANÁLISE CONCLUÍDA")
+print("ANÁLISE ESTATÍSTICA CONCLUÍDA")
 print("=" * 60)
