@@ -75,9 +75,19 @@ As imagens tratadas foram geradas utilizando o script `src/preprocessing.py`, de
 
 O processo reduziu o espaço ocupado pelo conjunto de aproximadamente **3.892,20 MB para 148,04 MB**, representando uma redução de **96,20% no armazenamento**.
 
-## Reprodução do processamento
+## Como reproduzir o tratamento das imagens
 
-O tratamento aplicado às imagens pode ser reproduzido por meio do script:
+Para reproduzir o processo de preparação dos dados, siga as etapas abaixo:
+
+1. Faça o download do **Semantic Drone Dataset** a partir de uma das fontes indicadas neste documento.
+
+2. Extraia os arquivos do dataset e localize a pasta que contém as imagens de treinamento.
+
+3. Abra a pasta do projeto **GeoMap** no **Visual Studio Code**.
+
+4. Certifique-se de que o **Python** e a biblioteca **Pillow** estejam instalados no ambiente utilizado.
+
+5. Execute o script:
 
 ```text
 src/preprocessing.py
