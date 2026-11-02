@@ -166,3 +166,11 @@ Como possibilidades de evolução, destacam-se:
 O GeoMap encontra-se em desenvolvimento experimental, tendo avançado desde a definição do problema e a preparação dos dados até a implementação e avaliação de um modelo de segmentação semântica.
 
 Os resultados obtidos demonstram a viabilidade inicial da utilização de Inteligência Artificial no processamento de imagens aéreas, estabelecendo uma base para o desenvolvimento de novas funcionalidades e aprimoramentos futuros.
+
+
+## Codigos do projeto
+Os códigos-fonte utilizados na preparação dos dados, treinamento e experimentação do modelo de segmentação estão organizados no repositório desenvolvido para a disciplina de Inteligência Artificial. O presente repositório concentra a documentação geral do GeoMap, a descrição do conjunto de dados, os resultados experimentais e a evolução do projeto.
+
+A separação entre os repositórios permite manter a organização dos materiais acadêmicos e evitar a duplicação desnecessária de arquivos.
+
+Link do repositório: https://github.com/ggstv-dl/Analise-Matricial
