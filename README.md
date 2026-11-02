@@ -105,6 +105,20 @@ Os resultados demonstraram diferenças de desempenho entre as categorias avaliad
 
 É importante destacar que esses valores correspondem à avaliação experimental realizada com dez imagens próprias e não representam uma avaliação definitiva da capacidade de generalização do modelo.
 
+## Resultados experimentais
+
+O repositório disponibiliza registros visuais das etapas de treinamento, avaliação e previsão do modelo de segmentação desenvolvido no GeoMap.
+
+Os resultados estão organizados da seguinte forma:
+
+results/training: gráficos referentes à evolução do treinamento do modelo.
+
+results/evaluation: matriz de confusão utilizada na análise do desempenho.
+
+results/predictions: exemplos de previsões de segmentação realizadas pelo modelo.
+
+Esses arquivos permitem visualizar parte dos experimentos realizados e complementam a documentação técnica e acadêmica do projeto.
+
 ## Tecnologias e ferramentas utilizadas
 
 | Tecnologia | Aplicação |
