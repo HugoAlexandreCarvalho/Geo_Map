@@ -117,7 +117,16 @@ results/evaluation: matriz de confusão utilizada na análise do desempenho.
 
 results/predictions: exemplos de previsões de segmentação realizadas pelo modelo.
 
-Esses arquivos permitem visualizar parte dos experimentos realizados e complementam a documentação técnica e acadêmica do projeto.
+Esses arquivos permitem visualizar parte dos experimentos realizados e complementam a documentação técnica e acadêmica do projeto.]
+
+
+Os arquivos completos gerados durante os experimentos de treinamento, validação e avaliação do modelo estão disponíveis para consulta e download no Google Drive.
+
+O material inclui gráficos de desempenho, matrizes de confusão, exemplos de segmentação, registros de treinamento e pesos do modelo.
+
+**Acesso aos resultados completos:** https://drive.google.com/drive/folders/1bqtUBERqsJDIe5OdpgSU1-4TTFzAjzmy?usp=sharing
+
+Os arquivos estão disponibilizados como material complementar à documentação do projeto.
 
 ## Tecnologias e ferramentas utilizadas
 
